@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>1.Scheme概览</title>
+	</head>
+
+	<body>
+		<h1>Scheme概览</h1>
+		
+		<h2>语义</h2>
+		<div>
+			<p>本章只是笼统地概括scheme的语义.非形式化的详细介绍在3-6章进行.7.2章提供了形式化的说明.</p>
+			<p>scheme有静态作用域.对每个变量的访问都与某个作用域中对该变量的绑定有关.</p>
+			<p>scheme是动态类型(或弱类型)语言.类型与值而非变量有关.静态类型的语言则相反,类型与变量,表达式和值相关联.</p>
+			<p>所有scheme对象都有无限的生存期.所有scheme对象都不会被破坏(清除).然而scheme实现可以在确认一个对象永远不会再被使用时回收空间,所以它们(一般)不会耗尽内存.</p>
+			<p>所有scheme实现要求支持尾递归,以便在常量空间内实现迭代运算.[省略一部分]参见3.5章.</p>
+			<p>scheme语言中的过程是对象.它们可以被动态地创生,被储存进数据结构,被其它过程返回,等等.</p>
+			<p>scheme一个标志性特色是,在一般编程语言中充当幕后角色的"继续" 也拥有第一等级身份(即 与一般的对象一视同仁).恰当地利用继续可以实现各种各样非常复杂的控制结构,包括异地退出,回溯,协同(coroutines)[小译表示不懂],等等.参见6.10.</p>
+			<p>scheme过程调用的时候,参数是按值传递的.[省略一部分]</p>
+			<p>scheme的数字计算模型是设计成经可能远离硬件层面的.在scheme中,每个整数都是有理数,每个有理数都是实数,每个实数都是复数...[总之重现了数学概念上的数]然而数有精确与不精确的区分,前者用以表达数学思想,后者用来模拟.精确数不一定是整数.</p>
+		</div>
+		
+		<h2>语法</h2>
+		<div>
+			<p>scheme就像大多lisp方言一样,需要括号来表示程序和其它数据;scheme的语法产生了基于操作数据的语言的子语言[原文:the grammar of Scheme generates a sublanguage of the language used for data].这种简单而通用的表示法产生的一个重要结果就是程序与数据具有一致性.例如,eval过程可以计算一个以数据形式表示的scheme程序.</p>
+			<p>read过程对它读取的数据执行词法和语法上的分析.read过程将它的输入分析为数据而非程序(参见7.1.2).</p>
+			<p>形式化的scheme语法将在7.1.说明.</p>		
+		</div>
+		
+		<h2>记号和术语</h2>
+		<div>
+			<h2>基本和可选特性</h2>
+			<div>
+				<p>[略...]</p>
+			</div>
+			
+			<h2>错误情况和未定义行为</h2>
+			<div>
+				<p>[略...]</p>
+			</div>
+			
+			<h2>条目格式化</h2>
+			<div>
+				<p>4,6章以条目形式组织.每个条目介绍了一个(组)语言特性.[略...]</p>
+				<p>以下记号表示&rt;=0个对象:</p>
+				<p>&lt;thing<sub>1</sub>&gt; ...</p>
+				<p>以下记号表示&rt;=1个对象:</p>
+				<p>&lt;thing<sub>1</sub>&gt; &lt;thing<sub>2</sub>&gt; ...</p>
+				<p>[略...]以下记法包含了类型限制:</p>
+				<table>
+					<tr>
+						<td>alist</td>
+						<td>联合表(所有元素都是点对的表)</td>
+					</tr>
+					<tr>
+						<td>boolean</td>
+						<td>布尔值(#t或#f)</td>
+					</tr>
+					<tr>
+						<td>byte</td>
+						<td>0&lt;=byte&lt;256,精确整数</td>
+					</tr>
+					<tr>
+						<td>bytevector</td>
+						<td>所有元素都是byte的向量</td>
+					</tr>
+					<tr>
+						<td>char</td>
+						<td>字符</td>
+					</tr>
+					<tr>
+						<td>end</td>
+						<td>精确非负整数</td>
+					</tr>
+					<tr>
+						<td>k,k<sub>1</sub>, ... k<sub>j</sub>, ...</td>
+						<td>精确非负整数</td>
+					</tr>
+					<tr>
+						<td>letter</td>
+						<td>英文字母表中的字符</td>
+					</tr>
+					<tr>
+						<td>list,list<sub>1</sub>, ... list<sub>j</sub>, ...</td>
+						<td>表(参见6.4)</td>
+					</tr>
+					<tr>
+						<td>n,n<sub>1</sub>, ... n<sub>j</sub>, ...</td>
+						<td>整数</td>
+					</tr>
+					<tr>
+						<td>obj</td>
+						<td>任何对象</td>
+					</tr>
+					<tr>
+						<td>pair</td>
+						<td>点对</td>
+					</tr>
+					<tr>
+						<td>port</td>
+						<td>端口</td>
+					</tr>
+					<tr>
+						<td>proc</td>
+						<td>过程</td>
+					</tr>
+					<tr>
+						<td>q,q<sub>1</sub>, ... q<sub>j</sub>, ...</td>
+						<td>有理数</td>
+					</tr>
+					<tr>
+						<td>start</td>
+						<td>精确非负整数</td>
+					</tr>
+					<tr>
+						<td>string</td>
+						<td>字符串</td>
+					</tr>
+					<tr>
+						<td>symbol</td>
+						<td>符号</td>
+					</tr>
+					<tr>
+						<td>thunk</td>
+						<td>0参数的过程</td>
+					</tr>
+					<tr>
+						<td>vector</td>
+						<td>向量</td>
+					</tr>
+					<tr>
+						<td>x, x<sub>1</sub>, ... x<sub>j</sub>, ...</td>
+						<td>实数</td>
+					</tr>
+					<tr>
+						<td>y, y<sub>1</sub>, ... y<sub>j</sub>, ...</td>
+						<td>实数</td>
+					</tr>
+					<tr>
+						<td>z, z<sub>1</sub>, ... z<sub>j</sub>, ...</td>
+						<td>复数</td>
+					</tr>
+				</table>
+				<p>start和end被用作字符串,向量,或比特向量(以下通称链)的索引.它们的使用遵循以下规则:<br />
+					<ul>
+						<li>start大于end 会引发一个错误.</li>
+						<li>end大于链的长度 会引发一个错误.</li>
+						<li>如果没有指明start,它的默认值为0.</li>
+						<li>如果没有指明end,它的默认值为链的长度.</li>
+						<li>start指示的对象永远被包含,end指示的对象永远不被包含.例如,如果有个字符串,start和end相同,则得到空字符串,如果start是0,end是该字符串的长度,则指代的是整个字符串.</li>
+					</ul>
+				</p>
+			</div>
+			
+			<h2>求值示例</h2>
+			<div>
+				<p>在程序示例中,"==&gt;"用以表示"求值得".例如:</p>
+				<table>
+					<tr>
+						<td>(* 5 8)</td>
+						<td>==&gt;</td>
+						<td>40</td>
+					</tr>
+				</table>
+			</div>
+			
+			<h2>命名约定</h2>
+			<div>
+				<p>约定上,名称以?结尾的过程只返回布尔值.这些过程被称为<em>断言</em>.断言原则上没有副作用,除非因为参数的类型不恰当而引发了错误.</p>
+				<p>相似的,名称以!结尾的过程会将值储存进已分配的位置(参见3.4章).这些过程被称为<em>赋值过程</em>[mutation procedure 直译应该是 转变过程,但这么翻译似乎不符合传统习惯,故以 赋值过程代替之].它们的返回值未被此标准定义.</p>
+				<p>约定上,名称中包含"-&gt;"的过程接受一个特定类型的对象为参数,返回一个不同类型的相似对象.例如,list-&gt;vector接受一个表,返回一个元素与原表完全相同的向量.</p>
+				<p><em>命令</em>是不返回有意义值的过程.</p>
+				<p><em>槽</em>[thunk,采用SICP中的译法]是无参过程.</p>
+			</div>
+		</div>
+	</body>
+</html>

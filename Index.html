@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+
+<html>
+  <head> 
+    <meta charset="utf-8" />
+    <title>r7rs中文翻译精简版</title>
+    <style type="text/css">
+      body,iframe,button,span {padding:0px;border:0px;margin:0px;}
+      #contents {width:290px;float:left;z-index:1;}
+      #hide-button {width:10px;float:left;z-index:0;}
+      #main-frame {float:left;z-index:2;}
+    </style>
+  </head> 
+  <body onload="resize()" onresize="resize()">
+    <iframe id="contents" class="class0" src="contents/contents.html"></iframe>
+    <button id="hide-button" class="class0" onclick="hideContents()">.<br />.<br />.<button>
+    <iframe id="main-frame" class="class0" src="contents/title-page.html" name="main"></iframe>
+
+    <script>
+      var cont=document.getElementById("contents");
+      var btn=document.getElementById("hide-button");
+      var main=document.getElementById("main-frame");
+      var hided=false;
+      
+      function resize(){
+        var h = document.documentElement.clientHeight;
+        var w = document.documentElement.clientWidth;
+        h = (h-10).toString()+"px"
+        cont.style.height = h;
+        btn.style.height = h;
+        main.style.height = h;
+        if(hided){
+          cont.style.width = "0px";
+          main.style.width = (w-30).toString()+"px";
+        }else{
+          cont.style.width = "290px";
+          main.style.width = (w-320).toString()+"px";
+        }
+      }
+
+      function hideContents(){
+      hided = true;
+      resize();
+      btn.onclick = showContents;
+      }
+      
+      function showContents(){
+      hided = false;
+      resize();
+      btn.onclick = hideContents;
+      }
+    </script>
+  </body>
+</html>
