@@ -13,7 +13,7 @@
       <ul>
 	<li>符号和字符的读取默认区分大小写.[...]可以通过加入指示#!fold-case或引入include-ci库来获得兼容.所有标准标示符都是小写.</li>
 	<li><span>syntax-rules</span>结构中可以使用_代替语法关键词.同时这也意味着这一符号不再能用作一个语法变量.然而它仍可以被用作字面量.</li>
-	<li>R5RS中的<span>exact-&gt;inexact</span>和<span>inexact-&gt;exact</span>被更名为R6RS中的名字,即<span>inexact</span>和<span>exact</span>,因为新名字更短也更贴切.旧名字在库R5RS中仍然可用.</li>
+	<li>R<sup>5</sup>RS中的<span>exact-&gt;inexact</span>和<span>inexact-&gt;exact</span>被更名为R<sup>6</sup>RS中的名字,即<span>inexact</span>和<span>exact</span>,因为新名字更短也更贴切.旧名字在库R<sup>5</sup>RS中仍然可用.</li>
 	<li>不再保证字符串比较(例如<span>string&lt;?</span>和相关的断言)是字符比较(<span>char&lt;?</span>和相关的断言)的字典序扩展.</li>
 	<li>不再要求支持以<span>#</span>开头的数字字面量.</li>
 	<li>不再要求支持说明性标志,<span>s,f,d,和l</span>.</li>
@@ -22,11 +22,11 @@
       </ul>
     </div>
     
-    <h2>其他自R5RS以来的语言改变</h2>
+    <h2>其他自R<sup>5</sup>RS以来的语言改变</h2>
     <div>
       <ul>
 	<li>修改了一些模棱两可或不详细的表述.</li>
-	<li>新增对库的支持以便于封装和共享代码.一些现存的和新增的标示符被划分到不同的库中.库可以被引入其他库或主程序中,引入时可以控制库中变量的引进和重命名.库的内容可以因运行环境的特性不同而有所改变.(The contents of a library can be made conditional on the features of the implementation on which it is to be used.)其中有一个兼容R5RS的库.</li>
+	<li>新增对库的支持以便于封装和共享代码.一些现存的和新增的标示符被划分到不同的库中.库可以被引入其他库或主程序中,引入时可以控制库中变量的引进和重命名.库的内容可以因运行环境的特性不同而有所改变.(The contents of a library can be made conditional on the features of the implementation on which it is to be used.)其中有一个兼容R<sup>5</sup>RS的库.</li>
 	<li>表达式类型<span>include,include-ci,和cond-expand</span>被加入基本库;它们与相应的库声明有相同的效果</li>
 	<li>异常可以用<span>raise,raise-continuable,或error</span>引发,可以被<span>with-exception-handler</span>和语法<span>guard</span>拦截.任何对象都可以被用于描述错误状态.实现定义的错误状态由<span>error</span>引发,有可以辨识它们的断言和可以取回参数的访问函数.由<span>read</span>和与文件相关的过程也有可以辨识它们的断言.</li>
 	<li>新增对SRFI 9 19 中<span>define-record-typ</span>e的支持.</li>
@@ -40,7 +40,7 @@
 	<li>新增<em>字符串端口</em>和<em>比特向量端口</em>,分别支持从字符串和比特向量中读写字符和比特.</li>
 	<li>为字符串和比特向量提供新的输入/输出(I/O)过程.</li>
 	<li>过程<span>write</span>在应用到包含环的对象时会生成数据标签.新过程<span>write-simple</span>不会生成标签;<span>write-shared</span>为所有重复引用和环状结构生成标签.过程<span>display</span>不应该在接受环状对象时无限循环.</li>
-	<li>增加R6RS过程<span>eof-object</span>.这个对象必须是独立的类型.</li>
+	<li>增加R<sup>6</sup>RS过程<span>eof-object</span>.这个对象必须是独立的类型.</li>
 	<li>语法定义现在可以出现在任何变量定义可以出现的地方.</li>
 	<li>结构<span>syntax-rules</span>现在允许省略号符号被明确的指定以取代默认的<span>...</span>.这允许模版跳出时带有以省略号开头的列表,而且允许尾模版跟在省略号模版的后方(allow template escapes with and ellipsis-prefixed list,and allows tail patterns to follow an ellipsis pattern).</li>
 	<li>新增语法<span>syntax-error</span>以便当宏被扩大时反馈更迅速且包含更多信息的错误消息.</li>
@@ -49,9 +49,9 @@
 	<li>条件语法<span>case</span>现在支持在任意子句中使用类似<span>case</span>中的<span>=&gt;</span>语法.</li>
 	<li>新增语法<span>case-lambda</span>(在独立的库中)以支持同一函数对不同数量的参数有不同的加工过程.</li>
 	<li>新增好用的条件语句<span>when</span>和<span>unless</span>.</li>
-	<li>现在<span>eqv?</span>接收非精确数时的行为与R6RS中定义的相同.</li>
+	<li>现在<span>eqv?</span>接收非精确数时的行为与R<sup>6</sup>RS中定义的相同.</li>
 	<li>当应用的参数时过程时,<span>eq?</span>和<span>eqv?</span>被允许返回不同的答案.</li>
-	<li>新增R6RS过程<span>boolean=?</span>和<span>symbol=?</span>.</li>
+	<li>新增R<sup>6</sup>RS过程<span>boolean=?</span>和<span>symbol=?</span>.</li>
 	<li>正无穷,负无穷,非数(NaN),和负非精确零被新增到数字塔的非精确数部分中.它们分别有以下的外部表示:<span>+inf.0,-inf.0,+nan.0,和-0.0</span>.对它们的支持是非强制的.外部表示-nan.0与+nan.0等价.</li>
 	<li>过程<span>log</span>现在接收第二个参数指定对数计算的基.</li>
 	<li>过程<span>map</span>和<span>for-each</span>现在被要求在最短的参数列表耗尽后终止.</li>
@@ -77,23 +77,23 @@
       </ul>
     </div>
 
-    <h2>与R6RS不兼容之处</h2>
+    <h2>与R<sup>6</sup>RS不兼容之处</h2>
     <div>
     <ul>
-      <li>R7RS中,库以关键词define-library而非library开头,以便在语法上与R6RS的库区分.从R7RS的观点来解释,R6RS库的体由导出声明,接着一个导入声明,接着一系列命令和定义.在R7RS中,命令和定义不允许直接出现在体中:它们必须被<span>begin</span>库声明包裹(they have to be wrapped in a begin library declaration).</li>
-      <li>没有直接的与R6RS中的<span>include,include-ci,include-library-declarations,或cond-expand</span>等价的库声明.另一方面,R7RS库语法不支持阶段(phase)和版本规格(version specifications).</li>
-      <li>把标准标示符组织进库的方式与R6RS不同.准确地说,在R5RS中被显示或隐式地认定为可选的过程全部被移出基本库.只有真正的基本库函数被保留.</li>
+      <li>R<sup>7</sup>RS中,库以关键词define-library而非library开头,以便在语法上与R<sup>6</sup>RS的库区分.从R<sup>7</sup>RS的观点来解释,R<sup>6</sup>RS库的体由导出声明,接着一个导入声明,接着一系列命令和定义.在R<sup>7</sup>RS中,命令和定义不允许直接出现在体中:它们必须被<span>begin</span>库声明包裹(they have to be wrapped in a begin library declaration).</li>
+      <li>没有直接的与R<sup>6</sup>RS中的<span>include,include-ci,include-library-declarations,或cond-expand</span>等价的库声明.另一方面,R<sup>7</sup>RS库语法不支持阶段(phase)和版本规格(version specifications).</li>
+      <li>把标准标示符组织进库的方式与R<sup>6</sup>RS不同.准确地说,在R<sup>5</sup>RS中被显示或隐式地认定为可选的过程全部被移出基本库.只有真正的基本库函数被保留.</li>
       <li>不再提供任何标示符语法(indentifier syntax).</li>
-      <li>允许内部语法定义,但对他们的使用不再允许提前;在R6RS中给出的<span>even/odd</span>例子不再允许.</li>
-      <li>兼容R6RS中的异常处理系统,但条件类型被保留为未定义的.确切地说,R6RS需要一个特定类型的条件被触发的地方,R7RS只是简单地说"这是一个错误",让用户自己决定错误的原因(where R6RS requires a condition of a specified type to be signaled, R7RS says only "it is an error", leaving the quesion of signaling open).</li>
+      <li>允许内部语法定义,但对他们的使用不再允许提前;在R<sup>6</sup>RS中给出的<span>even/odd</span>例子不再允许.</li>
+      <li>兼容R<sup>6</sup>RS中的异常处理系统,但条件类型被保留为未定义的.确切地说,R<sup>6</sup>RS需要一个特定类型的条件被触发的地方,R<sup>7</sup>RS只是简单地说"这是一个错误",让用户自己决定错误的原因(where R<sup>6</sup>RS requires a condition of a specified type to be signaled, R<sup>7</sup>RS says only "it is an error", leaving the quesion of signaling open).</li>
       <li>不再要求完整支持Unicode.不提供常态化(Normalization).字符比较被Unicode定义,但字符串比较方式由实现决定.允许出现非Unicode字符.</li>
-      <li>完整的数字塔和R5RS中一样,是可选的,但延续了R6RS中对IEEE非精确数,非数,和-0.0的可选支持.绝大多数对数字操作的结果澄清也被采纳了,但R6RS过程<span>real-valued?,rational-valued?,和integer-valued?</span>除外.不再提供R6RS中的除法操作符<span>div,mod,div-and-mode,div0,mod0,和div0-and-mod0</span>.</li>
+      <li>完整的数字塔和R<sup>5</sup>RS中一样,是可选的,但延续了R<sup>6</sup>RS中对IEEE非精确数,非数,和-0.0的可选支持.绝大多数对数字操作的结果澄清也被采纳了,但R<sup>6</sup>RS过程<span>real-valued?,rational-valued?,和integer-valued?</span>除外.不再提供R<sup>6</sup>RS中的除法操作符<span>div,mod,div-and-mode,div0,mod0,和div0-and-mod0</span>.</li>
       <li>当结果是未定义的时候,仍然要求返回一个值.然而,在体中的非尾表达式可以返回任意数量的值.</li>
-      <li><span>map</span>和<span>for-each</span>的行为被改变成与SRFI 1 30的早期讨论结果相同.相似地,<span>assoc</span>和<span>member</span>与SRFI 1中定义相同,可接受一个可选的<span>equal?</span>参数,来替代R6RS中的过程<span>assp</span>和<span>memp</span>.</li>
-      <li>R6RS中对于<span>quasiquote</span>的澄清被采用,对接受多参数的<span>unquote</span>和<span>unquote-splicing</span>报错.</li>
-      <li>不采用R6RS中指定尾数宽度的方法</li>
-      <li>字符串端口与SRFI 6 7而非R6RS兼容.</li>
-      <li>R6RS风格的比特向量被采用,但仅提供无符号比特(unsighed byte)(u8)过程.词汇语法采用SRFI 4 13中的#u8风格,而非R6RS中的#vu8.</li>
+      <li><span>map</span>和<span>for-each</span>的行为被改变成与SRFI 1 30的早期讨论结果相同.相似地,<span>assoc</span>和<span>member</span>与SRFI 1中定义相同,可接受一个可选的<span>equal?</span>参数,来替代R<sup>6</sup>RS中的过程<span>assp</span>和<span>memp</span>.</li>
+      <li>R<sup>6</sup>RS中对于<span>quasiquote</span>的澄清被采用,对接受多参数的<span>unquote</span>和<span>unquote-splicing</span>报错.</li>
+      <li>不采用R<sup>6</sup>RS中指定尾数宽度的方法</li>
+      <li>字符串端口与SRFI 6 7而非R<sup>6</sup>RS兼容.</li>
+      <li>R<sup>6</sup>RS风格的比特向量被采用,但仅提供无符号比特(unsighed byte)(u8)过程.词汇语法采用SRFI 4 13中的#u8风格,而非R<sup>6</sup>RS中的#vu8.</li>
       <li>提供了实用的宏<span>when</span>和<span>unless</span>,然而它们的结果是未定义的.</li>
       <li>余下的标准库特性文件留给将来的标准化工作.</li>
     </ul>
